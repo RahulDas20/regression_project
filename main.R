@@ -42,3 +42,13 @@ ggplot(data, aes(Yearly.Amount.Spent)) +
 
 #So we can see that both data are normally distributed
 #Now we can do model fitting for our linear regression
+
+lm.fit2 <- lm(Yearly.Amount.Spent ~ Length.of.Membership, data = data)
+
+data$Spent_hat <- predict(lm.fit2, newdata = data)
+
+view(data)
+
+ggplot(aes(Spent_hat, Yearly.Amount.Spent), data = data) +
+  geom_point() +
+  geom_abline()
